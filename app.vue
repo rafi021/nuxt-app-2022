@@ -1,14 +1,17 @@
 <template>
-  <div>
-  <button @click="toggle">Toggle</button>
-  <component :is="MyComponent" />
-  </div>
+  <a href="#" @click="view('home')">Home | </a>
+  <a href="#" @click="view('counter')">Counter</a>
+
+
+
+  <LazyHomeWelcome v-if="page==='home'" />
+  <LazyCounter v-if="page==='counter'" />
 </template>
 
 <script setup>
-  const MyComponent = shallowRef(resolveComponent('Counter'));
+ const page = ref("home");
 
-  function toggle(){
-    MyComponent.value = resolveComponent('HomeWelcome');
-  }
+ function view(name){
+  page.value = name;
+ }
 </script>
